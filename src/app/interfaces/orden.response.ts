@@ -50,6 +50,7 @@ export interface IDetalleOrden {
     codigoProveedor: string;
     tipoProveedor : string;
     nombreProducto : string;
+    ordenProveedorId : number;
 }
 
 export interface IMedioPago {
@@ -59,4 +60,20 @@ export interface IMedioPago {
 
 export interface IOrdenResponse {
     ordenId : number;
+}
+
+export interface ITransportador {
+    id : number;
+    nombre : string;
+}
+
+export interface IMunicipio {
+    idCodDane : string;
+    municipioDepartameto : string;
+}
+
+export interface IBuscarOrdenResponse {
+    codigo : number;
+    mensaje : string;
+    ordenesByCliente : IOrden[];
 }

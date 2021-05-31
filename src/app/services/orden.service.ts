@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { IMedioPago, IOrden, IOrdenResponse } from '../interfaces/orden.response'
+import { IBuscarOrdenResponse, IMedioPago, IMunicipio, IOrden, IOrdenResponse, ITransportador } from '../interfaces/orden.response'
 
 import { Configuracion } from './configuracion';
 import { ICliente } from '../interfaces/cliente.response';
@@ -29,6 +29,18 @@ export class OrdenService {
         return this.http.get<IMedioPago[]> ( url , this.httpOptions);            
     }
 
+    consultarTransportadores() {
+        let serviceUrl : string = this.configuracion.urlServicio;
+        let url = serviceUrl + '/transportador/obtener' ;      
+        return this.http.get<ITransportador[]> ( url , this.httpOptions);            
+    }
+
+    consultarMunicipios() {
+        let serviceUrl : string = this.configuracion.urlServicio;
+        let url = serviceUrl + '/transportador/codigosdane/obtener' ;      
+        return this.http.get<IMunicipio[]> ( url , this.httpOptions);            
+    }
+
     colocarOrden(orden : IOrden) {
         let serviceUrl : string = this.configuracion.urlServicio;
         let url = serviceUrl + '/orden/colocar' ;      
@@ -45,7 +57,7 @@ export class OrdenService {
     consultarOrdenesPorUsuario( cliente : ICliente ) {
         let serviceUrl : string = this.configuracion.urlServicio;
         let url = serviceUrl + '/orden/ordenes_cliente/' + cliente.userName ;      
-        return this.http.get<IOrden[]>( 
+        return this.http.get<IBuscarOrdenResponse>( 
           url,
           this.httpOptions);
     }
